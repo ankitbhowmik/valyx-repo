@@ -1,0 +1,52 @@
+@use "sass:map";
+@use "./common/variable" as var;
+
+.App{
+    background-color: rgb(4,7,13);
+    min-height: 100vh;
+    border-radius: 20px;
+    box-shadow: 2px 4px 16px 32px #191717;
+    margin: 0 auto;
+
+    .bottom-navigation-container{
+        position: fixed;
+        bottom:0;
+        left: 0;
+        right:0;
+        .main-bottom-nav {
+            z-index: 2;
+            background-color: rgb(4,7,13);
+            margin: 0 auto;
+            .nav-scanner{
+                position: relative;
+                top: -25px;
+                transform: scale(1.5);
+                border-radius: 50%;
+                padding: 9px;
+                background-color: map-get(var.$color, "secondary");
+            }
+            .nav-items {
+                transition: 0.6s;
+                cursor: pointer;
+                color: white;
+                &.active svg{
+                    color: map-get(var.$color, "secondary");
+                }
+                &:hover{
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .App{
+        max-width: 450px;
+        .bottom-navigation-container {
+            .main-bottom-nav {
+                max-width: 450px;
+            }
+        }
+    }
+}

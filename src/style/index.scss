@@ -1,0 +1,14 @@
+@use "./common/gutters";
+@use "./common/text";
+@use "./common/flex";
+@use "./app";
+@use "./dashboard";
+
+@import 'https://fonts.googleapis.com/css?family=Muli:300,400,600,700';
+
+body{
+    background-color: rgb(21,21,21);
+    color: white;
+    margin: 0;
+    font-family: 'Muli', sans-serif;
+}

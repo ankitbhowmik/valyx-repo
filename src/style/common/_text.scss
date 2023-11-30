@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "./variable" as var;
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+// this will produce classnames for colors like .color-primary, .color-secondary, from var.$color's map
+@each $key, $value in var.$color {
+	.color-#{$key} {
+		color: $value;
+	}
+}
+
+// get classnames like .text-small, .text-medium, .text-large, etc. from var.$sizes
+@each $key, $value in var.$sizes {
+	.text-#{$key} {
+		font-size: $value;
+	}
+}

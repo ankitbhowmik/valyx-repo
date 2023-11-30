@@ -1,0 +1,82 @@
+@use 'sass:map';
+
+.flex {
+	display: flex;
+}
+
+.flex-direction-row {
+	flex-direction: row;
+}
+
+.flex-direction-column {
+	flex-direction: column;
+}
+
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.flex-warp {
+	flex-wrap: wrap;
+}
+
+.flex-no-wrap {
+	flex-wrap: nowrap;
+}
+
+.justify-content-start {
+	justify-content: start;
+}
+
+.justify-content-end {
+	justify-content: end;
+}
+
+.justify-content-center {
+	justify-content: center;
+}
+
+.justify-content-space-between {
+	justify-content: space-between;
+}
+
+.justify-content-space-around {
+	justify-content: space-around;
+}
+
+.justify-content-space-evenly {
+	justify-content: space-evenly;
+}
+
+.align-items-center {
+	align-items: center;
+}
+
+.align-items-baseline {
+	align-items: baseline;
+}
+
+.align-self-center {
+	align-self: center;
+}
+
+.align-self-start {
+	align-self: flex-start;
+}
+
+$gaps: (
+);
+
+@for $i from 0 to 11 {
+	$gaps: map.set($gaps, $i, 3px * $i);
+}
+
+/* for the below will produce classess like gap-1, gap-2, gap-3, etc */
+@each $key,
+$value in $gaps {
+	.gap-#{$key} {
+		gap: $value;
+	}
+}

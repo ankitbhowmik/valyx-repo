@@ -1,0 +1,88 @@
+@use 'sass:map';
+@use "./variable" as var;
+
+$sizes: ();
+
+@for $i from 0 to 13 {
+	/* this will make sizes: (1: 5px, 2: 10px) */
+	$sizes: map.set($sizes, $i, 5px * $i);
+}
+
+/* for the below will produce classess like 
+	m-1, m-2, mt-1, mt-2, mb-1, mb-2  for margin. 
+	p-1, p-2, pt-1, pt-2, etc    for padding
+	m-sm-1, mt-sm-1, mb-sm-2       for responsive margin classes
+	p-sm-1, pt-sm-1, pt-sm-2       for responsive padding classes.
+	m-md-1, mt-md-1, etc and so on
+*/
+@each $breakpoint in map-keys(var.$breakpoints) {
+	@if $breakpoint != 'sm'{
+		@media (min-width: map-get(var.$breakpoints, $breakpoint)) {
+			@each $key, $value in $sizes {
+				.m-#{$breakpoint}-#{$key} {
+					margin: $value;
+				}
+				.mt-#{$breakpoint}-#{$key} {
+					margin-top: $value;
+				}
+				.mb-#{$breakpoint}-#{$key} {
+					margin-bottom: $value;
+				}
+				.ml-#{$breakpoint}-#{$key} {
+					margin-left: $value;
+				}
+				.mr-#{$breakpoint}-#{$key} {
+					margin-right: $value;
+				}
+				.p-#{$breakpoint}-#{$key} {
+					padding: $value;
+				}
+				.pt-#{$breakpoint}-#{$key} {
+					padding-top: $value;
+				}
+				.pb-#{$breakpoint}-#{$key} {
+					padding-bottom: $value;
+				}
+				.pl-#{$breakpoint}-#{$key} {
+					padding-left: $value;
+				}
+				.pr-#{$breakpoint}-#{$key} {
+					padding-right: $value;
+				}
+			}
+		}
+	} @else {
+		@each $key, $value in $sizes {
+			.m-#{$key} {
+				margin: $value;
+			}
+			.mt-#{$key} {
+				margin-top: $value;
+			}
+			.mb-#{$key} {
+				margin-bottom: $value;
+			}
+			.ml-#{$key} {
+				margin-left: $value;
+			}
+			.mr-#{$key} {
+				margin-right: $value;
+			}
+			.p-#{$key} {
+				padding: $value;
+			}
+			.pt-#{$key} {
+				padding-top: $value;
+			}
+			.pb-#{$key} {
+				padding-bottom: $value;
+			}
+			.pl-#{$key} {
+				padding-left: $value;
+			}
+			.pr-#{$key} {
+				padding-right: $value;
+			}
+		}
+	}
+}

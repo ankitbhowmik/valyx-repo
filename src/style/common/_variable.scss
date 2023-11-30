@@ -1,0 +1,30 @@
+/* used for class names color-primary, color-secondary, etc. */
+$color: (
+	primary: #B721FF,
+	secondary: #4684f7,
+	danger: #dd2121,
+	success: #089985,
+	warning: #e06f0d,
+	info: #0d65e0,
+	dark: #314862,
+	gray: #5b5858,
+);
+
+/* used for class names like text-extra-small, text-small, text-medium, etc etc. */
+$sizes: (
+	extra-small: 0.8rem,
+	small: 1rem,
+	medium: 1.4rem,
+	default: 1.6rem,
+	large: 1.8rem,
+	larger: 2rem,
+	extra-large: 2.4rem,
+);
+
+// break-points
+$breakpoints: (
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+);
