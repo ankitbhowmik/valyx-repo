@@ -1,23 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { humanizeNumber } from '../../utils/number';
-
-function calculateSpents(statements) {
-    let income = 0;
-    let expense = 0;
-    for(let statement of statements){
-        for(let data of statement.data){
-            if(data.Debit) {
-                expense += Number(data.Debit)
-            } 
-            if(data.Credit) {
-                income += Number(data.Credit)
-            }
-        }
-    }
-
-    return {income, expense}
-}
+import { calculateSpents, humanizeNumber } from '../../utils/number';
 
 const SpendingExpenseCards = () => {
     const { statements } = useSelector(state => state.statement);

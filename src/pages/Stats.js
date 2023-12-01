@@ -9,7 +9,6 @@ const Stats = () => {
       <TopBar />
       <IncomeExpenseTabs />
       <ExpenseRechart />
-
     </div>
   )
 }

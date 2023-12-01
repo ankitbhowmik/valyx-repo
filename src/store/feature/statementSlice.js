@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  statements: [],  // [ {fileName: "", data: [{'Date': "", 'Description':"", 'Debit':"", 'Credit':"", 'Balance':""}, {}] } ]
+  statements: [],  // [ {fileName: "", data: [{'Date': "", 'Description':"", 'Debit':"", 'Credit':"", 'Balance':""}, {}] } ],
+  selectedTab: "income",  // can be "income" or "expense"
 }
 
 export const statementSlice = createSlice({
@@ -17,6 +18,12 @@ export const statementSlice = createSlice({
 
     removeStatement: (state, action) => {
       state.statements = state.statements.filter(statement => statement.fileName !== action.fileName);
+    },
+    showIncomeTab: (state) => {
+      state.selectedTab = "income";
+    },
+    showExpenseTab: (state) => {
+      state.selectedTab = "expense";
     }
   },
 })
