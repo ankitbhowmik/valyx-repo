@@ -1,11 +1,33 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { humanizeNumber } from '../../utils/number';
 
-const cards = [
-    {title: "Total Spent", value: "₹ 11800"},
-    {title: "Total Expense", value: "₹ 23453"},
-]
+function calculateSpents(statements) {
+    let income = 0;
+    let expense = 0;
+    for(let statement of statements){
+        for(let data of statement.data){
+            if(data.Debit) {
+                expense += Number(data.Debit)
+            } 
+            if(data.Credit) {
+                income += Number(data.Credit)
+            }
+        }
+    }
+
+    return {income, expense}
+}
 
 const SpendingExpenseCards = () => {
+    const { statements } = useSelector(state => state.statement);
+    const {income, expense} = calculateSpents(statements)
+
+    const cards = [
+        {title: "Total Income", value: `₹ ${income ? humanizeNumber(income) : 0}`},
+        {title: "Total Expense", value: `₹ ${expense ? humanizeNumber(expense) : 0}`},
+    ]
+
   return (
     <div className='spending-expense-card flex justify-content-space-between gap-5'>
         {

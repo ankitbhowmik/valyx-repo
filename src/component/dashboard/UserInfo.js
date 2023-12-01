@@ -9,7 +9,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 const UserInfo = () => {
     return (
         <div>
-            <Card sx={{ color: "white", bgcolor: "transparent"}}>
+            <div>
                 <CardHeader
                     avatar={
                         <Avatar aria-label="recipe" src="https://avatars.githubusercontent.com/u/64949379?v=4" sx={{width: 50, height: 50}}/>
@@ -24,7 +24,7 @@ const UserInfo = () => {
                     title="Ankit Bhowmik"
                     subheader={<p className='m-0 color-grayy'>ankibhowmik@gmail.com</p>}
                 />
-            </Card>
+            </div>
         </div>
     )
 }

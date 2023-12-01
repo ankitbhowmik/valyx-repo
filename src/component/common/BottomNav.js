@@ -9,7 +9,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 const BottomNav = () => {
     let location = useLocation();
-    console.log("*** ", location)
 
     return (
         <div className='bottom-navigation-container color-white'>
