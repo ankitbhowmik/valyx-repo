@@ -9,8 +9,6 @@ const Dashboard = () => {
       <UserInfo />
       <SpendingExpenseCards />
       <AddNewStatements />
-
-    
     </div>
   )
 }

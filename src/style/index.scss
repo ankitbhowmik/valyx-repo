@@ -3,6 +3,7 @@
 @use "./common/flex";
 @use "./app";
 @use "./dashboard";
+@use "./stats";
 
 @import 'https://fonts.googleapis.com/css?family=Muli:300,400,600,700';
 
@@ -11,4 +12,8 @@ body{
     color: white;
     margin: 0;
     font-family: 'Muli', sans-serif;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }

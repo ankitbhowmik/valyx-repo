@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Badge } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
@@ -24,7 +22,7 @@ const UserInfo = () => {
                         </IconButton>
                       }
                     title="Ankit Bhowmik"
-                    subheader={<p className='m-0 color-gray'>ankibhowmik@gmail.com</p>}
+                    subheader={<p className='m-0 color-grayy'>ankibhowmik@gmail.com</p>}
                 />
             </Card>
         </div>

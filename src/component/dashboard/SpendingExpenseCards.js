@@ -11,7 +11,7 @@ const SpendingExpenseCards = () => {
         {
             cards.map(({title, value})=> (
                 <div className='card' key={title}>
-                    <p className='text-extra-small color-gray'>{title}</p>
+                    <p className='text-extra-small color-grayy'>{title}</p>
                     <p className='text-medium color-white'>{value}</p>
                 </div>
             ))
