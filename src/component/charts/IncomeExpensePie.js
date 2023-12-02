@@ -2,8 +2,7 @@ import React, {memo, useCallback, useMemo} from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
-import { useSelector } from 'react-redux';
-import { calculateSpents, getGraphData, humanizeNumber } from '../../utils/number';
+import { humanizeNumber } from '../../utils/number';
 
 const StyledText = styled('text')(({ theme }) => ({
   fill: "white",
@@ -21,11 +20,7 @@ function PieCenterLabel({ children }) {
   );
 }
 
-const IncomeExpensePie = () => {
-  const { statements, selectedTab } = useSelector(state => state.statement);
-
-  const {incomeData, expenseData} = useMemo(()=>getGraphData(statements), [statements.length])
-
+const IncomeExpensePie = ({incomeData, expenseData, selectedTab}) => {
   let data = selectedTab === "expense" ? expenseData : incomeData;
   const modifyData = useCallback((data)=>{
     let othersExpense = 0;
@@ -41,7 +36,8 @@ const IncomeExpensePie = () => {
   }, [])
   
   data = modifyData(data);
-  let centerValue = data.reduce((acc, item) => acc + item.value, 0);
+  let centerValue = data.reduce((acc, item) => acc + item.value, 0)
+
 
   return (
     <PieChart

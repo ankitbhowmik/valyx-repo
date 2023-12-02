@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const humanizeNumber = (num) => {
   if (!isNaN(num)) {
     let absNum = Math.abs(num);
@@ -43,18 +45,46 @@ export function calculateSpents(statements) {
   return { income, expense }
 }
 
-export function getGraphData(statements){
+export function getGraphData(statements, filter) {
+  let copyStatement = statements //structuredClone(statements)  // just refernce copy :P
+  // filter logic starts
+  if (filter.enable) {
+    copyStatement = copyStatement.filter(statement => filter.bankStatements.includes(statement.fileName))
+    copyStatement = copyStatement.map(statement => ({
+      fileName: statement.fileName,
+      data: statement.data.filter(data => {
+        let shouldReturn = true;
+        if (filter?.description?.length) {
+          if (!filter.description.includes(data.Description)) shouldReturn = false;
+        }
+        if (filter.date.dateType !== "all") {
+          if (filter.date.from && filter.date.to && shouldReturn) {
+            const from = moment(filter.date.from);
+            const to = moment(filter.date.to);
+            const dataDate = moment(data.Date)
+            if (dataDate.isSameOrAfter(from) && dataDate.isSameOrBefore(to)) {
+            } else {
+              shouldReturn = false;
+            }
+          }
+        }
+        return shouldReturn;
+      })
+    }))
+  }
+  // filter logic ends
+
   const expenseGroup = {};
   const incomeGroup = {};
 
-  for (let statement of statements) {
+  for (let statement of copyStatement) {
     for (let data of statement.data) {
       if (data.Debit) {
-        if(!expenseGroup[data.Description]) expenseGroup[data.Description] = 0;
+        if (!expenseGroup[data.Description]) expenseGroup[data.Description] = 0;
         expenseGroup[data.Description] += !isNaN(Number(data.Debit)) ? Number(data.Debit) : 0;
       }
       if (data.Credit) {
-        if(!incomeGroup[data.Description]) incomeGroup[data.Description] = 0;
+        if (!incomeGroup[data.Description]) incomeGroup[data.Description] = 0;
         incomeGroup[data.Description] += !isNaN(Number(data.Credit)) ? Number(data.Credit) : 0;
       }
     }
@@ -63,14 +93,14 @@ export function getGraphData(statements){
   let expenseArr = [];
   let incomeArr = [];
 
-  for(let expGrp in expenseGroup){
-    expenseArr.push({label: expGrp, value: Number(expenseGroup[expGrp])})
+  for (let expGrp in expenseGroup) {
+    expenseArr.push({ label: expGrp, value: Number(expenseGroup[expGrp]) })
   }
-  expenseArr.sort((a,b)=>b.value - a.value );
+  expenseArr.sort((a, b) => b.value - a.value);
 
-  for(let incGrp in incomeGroup) {
-    incomeArr.push({label: incGrp, value: Number(incomeGroup[incGrp])})
+  for (let incGrp in incomeGroup) {
+    incomeArr.push({ label: incGrp, value: Number(incomeGroup[incGrp]) })
   }
-  incomeArr.sort((a,b)=>b.value - a.value );
-  return {expenseData: expenseArr, incomeData: incomeArr}
+  incomeArr.sort((a, b) => b.value - a.value);
+  return { expenseData: expenseArr, incomeData: incomeArr }
 }

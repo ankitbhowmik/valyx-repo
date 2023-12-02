@@ -12,7 +12,13 @@
 // this will produce classnames for colors like .color-primary, .color-secondary, from var.$color's map
 @each $key, $value in var.$color {
 	.color-#{$key} {
-		color: $value;
+		color: $value !important;
+	}
+}
+
+@each $key, $value in var.$color {
+	.bg-#{$key} {
+		background-color: $value !important;
 	}
 }
 
