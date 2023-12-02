@@ -95,7 +95,7 @@ export default function IncomeExpenseFilter({ toggleDrawer, incomeData, expenseD
 
     const applyFilter = () => {
         dispatch(statementAction.replaceFilter(myfilter));
-        dispatch(statementAction.applyFilter());
+        // dispatch(statementAction.applyFilter());
         toggleDrawer()
     }
     const clearAllFilter = () => {

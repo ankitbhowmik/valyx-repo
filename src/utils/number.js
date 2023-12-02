@@ -48,7 +48,7 @@ export function calculateSpents(statements) {
 export function getGraphData(statements, filter) {
   let copyStatement = statements //structuredClone(statements)  // just refernce copy :P
   // filter logic starts
-  if (filter.enable) {
+
     copyStatement = copyStatement.filter(statement => filter.bankStatements.includes(statement.fileName))
     copyStatement = copyStatement.map(statement => ({
       fileName: statement.fileName,
@@ -71,7 +71,7 @@ export function getGraphData(statements, filter) {
         return shouldReturn;
       })
     }))
-  }
+
   // filter logic ends
 
   const expenseGroup = {};

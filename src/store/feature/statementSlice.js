@@ -55,7 +55,15 @@ export const statementSlice = createSlice({
       state.filter.enable = false
     },
     clearFilter: (state) => {
-      state.filter = initialState.filter
+      state.filter = {
+        ...state.filter,
+        description: [],
+        date: {
+          from: "",
+          to: "",
+          dateType: "all"   // possible field are "all", "this_month", "last_month", "custom"
+        }
+      }
     }
   },
 })

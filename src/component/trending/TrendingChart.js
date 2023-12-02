@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
 import Select from 'react-select';
 import moment from "moment";
@@ -10,7 +10,7 @@ export default function BasicLineChart({incomeData, expenseData, selectedTab}) {
     const data = selectedTab === "income" ? incomeData : expenseData;
     const categoryOptions = useMemo(()=> Object.keys(data).map(d=> ({value: d, label: d})), [data]);
 
-    useState(()=>{
+    useEffect(()=>{
         setSelectedOption(categoryOptions[0]?.value ?? "")
     }, [categoryOptions])
 
@@ -21,11 +21,7 @@ export default function BasicLineChart({incomeData, expenseData, selectedTab}) {
         return new Date(dat.year(), dat.month(), dat.date())
     }) ?? defaultDate;
 
-    const seriesData = data?.[selectedOption]?.map(item=> selectedTab==="income" ? item.Credit : item.Debit ) ?? [1, 2 ,7,3,7,8];
-
-    console.log("*** 1", data)
-    console.log("*** 2", xAxisData)
-    console.log("*** 3", seriesData)
+    const seriesData = data?.[selectedOption]?.map(item=> selectedTab==="income" ? +item.Credit : +item.Debit ) ?? [1, 2 ,7,3,7,8];
     
     return (
         <>

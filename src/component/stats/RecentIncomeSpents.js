@@ -15,7 +15,7 @@ const RecentIncomeSpents = ({ recentExpense, recentIncome, selectedTab }) => {
             </div>
             <div>
                 {data.slice(0, 5).map((item, index) => (
-                    <Card sx={{ color: "white", bgcolor: "transparent" }} key={item.Date + item.Description}>
+                    <Card sx={{ color: "white", bgcolor: "transparent" }} key={item.Date + item.Description + index}>
                         <CardHeader
                             avatar={
                                 <Avatar aria-label="recipe" sx={{ width: 50, height: 50 }}>{item.Description?.charAt(0)?.toUpperCase()}</Avatar>

@@ -5,17 +5,21 @@ import { getTrendingGraphData } from '../../utils/number';
 
 const TrendingLineGraph = () => {
     const { statements, selectedTab } = useSelector(state => state.statement);
-    const {incomeData, expenseData} = useMemo(()=>getTrendingGraphData(statements), [statements]);
+    const { incomeData, expenseData } = useMemo(() => getTrendingGraphData(statements), [statements]);
 
     return (
         <div className='expense-rechart'>
             <div className='some-chart'>
-                <br/>
-                <TrendingChart 
-                    incomeData={incomeData}
-                    expenseData={expenseData}
-                    selectedTab={selectedTab}
-                />
+                <br />
+                {statements.length === 0
+                    ? <h1>No Statement found. Please upload one!!</h1>
+                    : <TrendingChart
+                        incomeData={incomeData}
+                        expenseData={expenseData}
+                        selectedTab={selectedTab}
+                    />
+                }
+
             </div>
         </div>
     )
