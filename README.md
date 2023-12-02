@@ -36,4 +36,6 @@ Now you can also check which category is trending with the help of a line chart
 ![](demo_pics/trending.png)
 
 
+# Thankyou. 
+
 
