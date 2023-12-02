@@ -143,13 +143,20 @@ const AddNewStatements = () => {
                     <h3 className='color-dark'>Rules For Statment Uploading</h3>
                     <p className='color-grayy text-small'>*Must upload a .csv file and that csv should contains all fields mentioned below</p>
                     <p className='color-grayy text-small'>'Date', 'Description', 'Debit', 'Credit', 'Balance'</p>
+                    <p className='color-grayy text-small'>you can download some demo files to get started</p>
+                    <div className='flex justify-content-space-between mb-3'>
+                        <a href="/downloadable/axis.csv" download>axis.csv</a> 
+                        <a href="/downloadable/hdfc.csv" download>hdfc.csv</a>
+                        <a href="/downloadable/icici.csv" download>icici.csv</a>  
+                    </div>
                     <ButtonGroup variant="outlined" aria-label="outlined button group">
                         <Button
                             size="large"
                             component="label"
                             variant="outlined"
+                            style={{color: "#0077b6", borderColor: "#0077b6"}}
                         >
-                            Okay
+                            upload
                             <VisuallyHiddenInput type="file" onChange={onFileChange} />
                         </Button>
                         <Button
@@ -157,6 +164,7 @@ const AddNewStatements = () => {
                             component="label"
                             // variant="contained"
                             onClick={() => setIsUploadModalOpen(false)}
+                            style={{color: "#0077b6", borderColor: "#0077b6"}}
                         >
                             Cancel
                         </Button>

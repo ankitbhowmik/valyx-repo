@@ -2,7 +2,7 @@ import React from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from 'react-router-dom';
 
-const TopBar = () => {
+const TopBar = ({title}) => {
   const navigate = useNavigate();
   return (
     <div className='top-bar flex justify-content-space-between align-items-center pt-4 pb-4'>
@@ -10,7 +10,7 @@ const TopBar = () => {
             <ArrowBackIosIcon style={{"transform": "translateX(5px)"}} fontSize='small'/>
         </div>
         <div>
-            <h3 className='m-0'>Statistics</h3>
+            <h3 className='m-0'>{title}</h3>
         </div>
         <div style={{width: 40}}>
           

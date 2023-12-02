@@ -111,3 +111,25 @@ export function getGraphData(statements, filter) {
 
   return { expenseData: expenseArr, incomeData: incomeArr, recentExpense, recentIncome }
 }
+
+export function getTrendingGraphData(statements) {
+  let copyStatement = statements //structuredClone(statements)  
+  
+  const expenseGroup = {};
+  const incomeGroup = {};
+
+  for (let statement of copyStatement) {
+    for (let data of statement.data) {
+      if (data.Debit) {
+        if (!expenseGroup[data.Description]) expenseGroup[data.Description] = [];
+        expenseGroup[data.Description].push(data);
+      }
+      if (data.Credit) {
+        if (!incomeGroup[data.Description]) incomeGroup[data.Description] = [];
+        incomeGroup[data.Description].push(data);
+      }
+    }
+  }
+ 
+  return {incomeData: incomeGroup, expenseData: expenseGroup}
+}
