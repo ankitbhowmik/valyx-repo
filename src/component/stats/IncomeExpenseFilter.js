@@ -37,7 +37,7 @@ export default function IncomeExpenseFilter({ toggleDrawer, incomeData, expenseD
 
     useEffect(()=>{
         setMyFilter(filter)
-    }, [])
+    }, [filter])
 
     let searchOptions = selectedTab === "expense" ? expenseData : incomeData;
     searchOptions = searchOptions.map(op => ({ label: op.label, value: op.value }))

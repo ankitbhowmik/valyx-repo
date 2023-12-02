@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import TopBar from '../component/common/TopBar'
 import IncomeExpenseTabs from '../component/stats/IncomeExpenseTabs'
 import ExpenseRechart from '../component/stats/ExpenseRechart'

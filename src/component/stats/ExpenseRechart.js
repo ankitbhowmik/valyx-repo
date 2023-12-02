@@ -11,12 +11,22 @@ const ExpenseRechart = () => {
 
     const toggleDrawer = () => setFilterOpen(prev => !prev);
     const { statements, selectedTab, filter } = useSelector(state => state.statement);
-    const {incomeData, expenseData} = useMemo(()=>getGraphData(statements, filter), [statements.length, filter])
+    const {incomeData, expenseData, recentExpense, recentIncome} = useMemo(()=>getGraphData(statements, filter), [statements, filter])
 
     return (
         <div className='expense-rechart'>
             <div className='flex justify-content-space-between mt-2'>
-                <h3>This month</h3>
+                <h3>
+                    {
+                    filter.date.dateType === "all" 
+                    ? "All time"
+                    : filter.date.dateType === "this_month"
+                    ? "This month"
+                    : filter.date.dateType === "last_month"
+                    ? "Last month"
+                    : "Custom"
+                }
+                </h3>
                 <Button color="info" onClick={toggleDrawer}>
                     filter
                 </Button>
@@ -44,7 +54,11 @@ const ExpenseRechart = () => {
                     incomeData={incomeData} 
                     expenseData={expenseData}
                 />
-                <RecentIncomeSpents />
+                <RecentIncomeSpents 
+                    recentExpense={recentExpense}
+                    recentIncome={recentIncome}
+                    selectedTab={selectedTab} 
+                />
             </div>
         </div>
     )

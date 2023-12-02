@@ -76,16 +76,20 @@ export function getGraphData(statements, filter) {
 
   const expenseGroup = {};
   const incomeGroup = {};
+  const recentIncome = [];
+  const recentExpense = []
 
   for (let statement of copyStatement) {
     for (let data of statement.data) {
       if (data.Debit) {
         if (!expenseGroup[data.Description]) expenseGroup[data.Description] = 0;
         expenseGroup[data.Description] += !isNaN(Number(data.Debit)) ? Number(data.Debit) : 0;
+        recentExpense.push(data)
       }
       if (data.Credit) {
         if (!incomeGroup[data.Description]) incomeGroup[data.Description] = 0;
         incomeGroup[data.Description] += !isNaN(Number(data.Credit)) ? Number(data.Credit) : 0;
+        recentIncome.push(data)
       }
     }
   }
@@ -102,5 +106,8 @@ export function getGraphData(statements, filter) {
     incomeArr.push({ label: incGrp, value: Number(incomeGroup[incGrp]) })
   }
   incomeArr.sort((a, b) => b.value - a.value);
-  return { expenseData: expenseArr, incomeData: incomeArr }
+
+
+
+  return { expenseData: expenseArr, incomeData: incomeArr, recentExpense, recentIncome }
 }
