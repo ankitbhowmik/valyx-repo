@@ -42,7 +42,6 @@ const AddNewStatements = () => {
             });
             return
         }
-        dispatch(userAction.setLoading({ loading: true }))
         if (file.type !== "text/csv") {
             Swal.fire({
                 icon: "error",
@@ -51,6 +50,7 @@ const AddNewStatements = () => {
             });
             return
         } else {
+            dispatch(userAction.setLoading({ loading: true }))
             const reader = new FileReader();
             reader.readAsText(file);
 
